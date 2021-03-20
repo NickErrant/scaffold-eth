@@ -52,7 +52,7 @@ contract StakeRaffle is Ownable {
   }
 
   function getTicketId(address account, uint256 raffleId) public view returns (uint256) {
-    return keccak256(abi.encodePacked(account,raffleID));
+    return keccak256(abi.encodePacked(account,raffleId));
   }
 
   function getTicketStatus(uint256 ticketId) public view returns (TicketStatus) {
@@ -82,7 +82,7 @@ contract StakeRaffle is Ownable {
     onlyOwner
   {
       raffleCounter++;
-      raffle[raffleCounter] = Raffle({
+      raffles[raffleCounter] = Raffle({
           startTime: startTime,
           endTime: endTime,
           entryFee: entryFee,
@@ -97,7 +97,7 @@ contract StakeRaffle is Ownable {
   {
       address user = msg.sender;
       require(whitelist[user], "Not whitelisted");
-      raffleTicket = getTicketId(user, raffleId);
+      uint256 raffleTicket = getTicketId(user, raffleId);
       require(getTicketStatus(raffleTicket) == 0, "Already registered");
 
       Raffle memory raffle = raffles[raffleId];
@@ -146,8 +146,8 @@ contract StakeRaffle is Ownable {
           }
       }
 
+      Account storage account = accounts[user];
       if (didWin) {
-        Account storage account = accounts[user];
         account.cashBalance -= raffle.entryFee;
         account.lBonus = 0;
         // shoe mint happens here maybe
