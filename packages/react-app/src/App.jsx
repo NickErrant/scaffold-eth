@@ -16,8 +16,14 @@ import { Hints, ExampleUI, Subgraph } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
+
+// import image assets
 import main_shoe from './assets/main_shoe.png'; // Tell Webpack this JS file uses this image
 import secondary_shoe from './assets/secondary_shoe.png'; // Tell Webpack this JS file uses this image
+
+// import styles
+import './styles/Entry.css'
+
 const { BufferList } = require('bl')
 // https://www.npmjs.com/package/ipfs-http-client
 const ipfsAPI = require('ipfs-http-client');
@@ -333,7 +339,15 @@ function App(props) {
             {/* ******************************************** */}
             {/* *************** Entry Screen *************** */}
             {/* ******************************************** */}
-            <div style={{ width: 1440, height: 1371, margin: "auto", marginLeft: 40, marginTop: 40, paddingBottom: 65}}>
+            <div
+              style={{ 
+                width: 1440,
+                height: 1371,
+                margin: "auto",
+                marginLeft: 40,
+                marginTop: 40,
+                paddingBottom: 65,
+              }}>
 
             <Row gutter={16}>
               <Col className="gutter-row">
@@ -345,12 +359,13 @@ function App(props) {
                 </Row>
                 {/* Main shoe drop image - CTA */}
                 <Row gutter={16} style={{ paddingTop: 16 }}>
-                  <img 
+                  <img
+                    class="box"
                     src={main_shoe} 
                     style = {{ width: 1360, height: 679 }}
                     onClick = {() => console.log("clicked primary shoe image!") }
                     />
-                  <span 
+                  <span
                     style={{ 
                       textAlign: "left", 
                       position: "absolute", 
@@ -395,25 +410,28 @@ function App(props) {
                 {/* Other Drops - Other shoes */}
                 <Row gutter={32} style={{ marginTop: 20 }}>
                   <Col>
-                    <img 
+                    <img
+                      class="box"
                       src={secondary_shoe} 
                       style = {{ width: 432, height: 421 }}
                       onClick = {() => console.log("clicked secondary shoe image #1!") }
                       />
                   </Col>
                   <Col>
-                  <img 
-                      src={secondary_shoe} 
-                      style = {{ width: 432, height: 421 }}
-                      onClick = {() => console.log("clicked secondary shoe image #2!") }
-                      />
+                  <img
+                    class="box"
+                    src={secondary_shoe} 
+                    style = {{ width: 432, height: 421 }}
+                    onClick = {() => console.log("clicked secondary shoe image #2!") }
+                    />
                   </Col>
                   <Col>
-                  <img 
-                      src={secondary_shoe} 
-                      style = {{ width: 432, height: 421 }}
-                      onClick = {() => console.log("clicked secondary shoe image #3!") }
-                      />
+                  <img
+                    class="box"
+                    src={ secondary_shoe }
+                    style = {{ width: 432, height: 421 }}
+                    onClick = {() => console.log("clicked secondary shoe image #3!") }
+                    />
                   </Col>
                 </Row>
               </Col>
