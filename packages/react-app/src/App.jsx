@@ -16,10 +16,19 @@ import { Hints, ExampleUI, Subgraph } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
+import main_shoe from './assets/main_shoe.png'; // Tell Webpack this JS file uses this image
+import secondary_shoe from './assets/secondary_shoe.png'; // Tell Webpack this JS file uses this image
 const { BufferList } = require('bl')
 // https://www.npmjs.com/package/ipfs-http-client
 const ipfsAPI = require('ipfs-http-client');
 const ipfs = ipfsAPI({host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
+
+
+console.log('main_shoe')
+
+// when using "%PUBLIC_URL%" ->
+console.log(main_shoe); // /static/media/main_shoe.e49e51df.png
+
 /*
     Welcome to 🏗 scaffold-eth !
 
@@ -281,6 +290,8 @@ function App(props) {
 
   const [ transferToAddresses, setTransferToAddresses ] = useState({})
 
+  const style = { background: '#0092ff', padding: '8px 0' };
+
   return (
     <div className="App">
 
@@ -319,6 +330,37 @@ function App(props) {
             
             
             */}
+
+            <div style={{ width: 1440, height: 1371, margin: "auto", marginLeft: 40, marginTop: 40, paddingBottom: 65}}>
+
+            <Row gutter={16}>
+              <Col className="gutter-row">
+                <Row gutter={16}>
+                  <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>EVERY THING'S A REMIX</span>
+                </Row>
+                <Row gutter={16} style={{ marginTop: 16 }}>
+                  <img src={main_shoe} style = {{ width: 1360, height: 679 }}></img>
+                </Row>
+                <Row gutter={16} style={{ marginTop: 40 }}>
+                  <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>Other Drops</span>
+                </Row>
+                <Row gutter={32} style={{ marginTop: 20 }}>
+                  <Col>
+                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                  </Col>
+                  <Col>
+                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                  </Col>
+                  <Col>
+                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+              
+
+            </div>
+
           </Route>
           <Route exact path="/collection">
             {/*
