@@ -331,9 +331,10 @@ function App(props) {
           <Route exact path="/entry">
             {/* 
             
-            features:
-            - static preview
-            - on click event logs
+            Features:
+             - Static display
+             - On shoe image click log events
+             - Drop shadow on hover over shoe image
             
             */}
             {/* ******************************************** */}
@@ -348,99 +349,96 @@ function App(props) {
                 marginTop: 40,
                 paddingBottom: 65,
               }}>
-
-            <Row gutter={16}>
-              <Col className="gutter-row">
-                {/* Header - EVERY THING'S A REMIX */}
-                <Row gutter={16}>
-                  <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>
-                    EVERY THING'S A REMIX
-                  </span>
-                </Row>
-                {/* Main shoe drop image - CTA */}
-                <Row gutter={16} style={{ paddingTop: 16 }}>
-                  <img
-                    class="box"
-                    src={main_shoe} 
-                    style = {{ width: 1360, height: 679 }}
-                    onClick = {() => console.log("clicked primary shoe image!") }
-                    />
-                  <span
-                    style={{ 
-                      textAlign: "left", 
-                      position: "absolute", 
-                      top: 551 + 
-                        (96 / 2) + // <- half the height of the text view
-                        16, // top padding of container
-                      left: 32,
-                      fontFamily:'stratos', 
-                      fontStyle:'black', 
-                      fontStyle:'italic', 
-                      fontWeight: 900, 
-                      fontSize: 38, 
-                      width: 235 
-                    }}>
-                    Drop #1 ”Kanye West”
-                  </span>
-                  <span 
-                    style={{ 
-                      textAlign: "left", 
-                      position: "absolute", 
-                      top: 579 + 
-                        (84 / 2) + // <- half the height of the text view
-                        16, // top padding of container
-                      left: 1068,
-                      fontFamily:'stratos', 
-                      fontStyle:'black', 
-                      fontStyle:'italic', 
-                      fontWeight: 900, 
-                      fontSize: 54,
-                      width: 260,
-                      textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
-                    }}>
-                    Enter Drop
-                  </span>
-                </Row>
-                {/* Other Drops - Sub-header */}
-                <Row gutter={16} style={{ marginTop: 40 }}>
-                  <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>
-                    Other Drops
-                  </span>
-                </Row>
-                {/* Other Drops - Other shoes */}
-                <Row gutter={32} style={{ marginTop: 20 }}>
-                  <Col>
+              <Row gutter={16}>
+                <Col className="gutter-row">
+                  {/* Header - EVERY THING'S A REMIX */}
+                  <Row gutter={16}>
+                    <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>
+                      EVERY THING'S A REMIX
+                    </span>
+                  </Row>
+                  {/* Main shoe drop image - CTA */}
+                  <Row gutter={16} style={{ paddingTop: 16 }}>
+                    <img
+                      class="box"
+                      src={main_shoe} 
+                      style = {{ width: 1360, height: 679 }}
+                      onClick = {() => console.log("clicked primary shoe image!") }
+                      />
+                    <span
+                      style={{ 
+                        textAlign: "left", 
+                        position: "absolute", 
+                        top: 551 + 
+                          (96 / 2) + // <- half the height of the text view
+                          16, // top padding of container
+                        left: 32,
+                        fontFamily:'stratos', 
+                        fontStyle:'black', 
+                        fontStyle:'italic', 
+                        fontWeight: 900, 
+                        fontSize: 38, 
+                        width: 235 
+                      }}>
+                      Drop #1 ”Kanye West”
+                    </span>
+                    <span 
+                      style={{ 
+                        textAlign: "left", 
+                        position: "absolute", 
+                        top: 579 + 
+                          (84 / 2) + // <- half the height of the text view
+                          16, // top padding of container
+                        left: 1068,
+                        fontFamily:'stratos', 
+                        fontStyle:'black', 
+                        fontStyle:'italic', 
+                        fontWeight: 900, 
+                        fontSize: 54,
+                        width: 260,
+                        textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
+                      }}>
+                      Enter Drop
+                    </span>
+                  </Row>
+                  {/* Other Drops - Sub-header */}
+                  <Row gutter={16} style={{ marginTop: 40 }}>
+                    <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>
+                      Other Drops
+                    </span>
+                  </Row>
+                  {/* Other Drops - Other shoes */}
+                  <Row gutter={32} style={{ marginTop: 20 }}>
+                    <Col>
+                      <img
+                        class="box"
+                        src={secondary_shoe} 
+                        style = {{ width: 432, height: 421 }}
+                        onClick = {() => console.log("clicked secondary shoe image #1!") }
+                        />
+                    </Col>
+                    <Col>
                     <img
                       class="box"
                       src={secondary_shoe} 
                       style = {{ width: 432, height: 421 }}
-                      onClick = {() => console.log("clicked secondary shoe image #1!") }
+                      onClick = {() => console.log("clicked secondary shoe image #2!") }
                       />
-                  </Col>
-                  <Col>
-                  <img
-                    class="box"
-                    src={secondary_shoe} 
-                    style = {{ width: 432, height: 421 }}
-                    onClick = {() => console.log("clicked secondary shoe image #2!") }
-                    />
-                  </Col>
-                  <Col>
-                  <img
-                    class="box"
-                    src={ secondary_shoe }
-                    style = {{ width: 432, height: 421 }}
-                    onClick = {() => console.log("clicked secondary shoe image #3!") }
-                    />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-              
-
+                    </Col>
+                    <Col>
+                    <img
+                      class="box"
+                      src={ secondary_shoe }
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #3!") }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
             </div>
-
           </Route>
+
           <Route exact path="/collection">
             {/*
                 🎛 this scaffolding is full of commonly used components
