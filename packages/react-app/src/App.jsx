@@ -12,7 +12,7 @@ import { Header, Account, Faucet, Ramp, Contract, GasGauge, Address, AddressInpu
 import { Transactor } from "./helpers";
 import { formatEther, parseEther } from "@ethersproject/units";
 //import Hints from "./Hints";
-import { Hints, ExampleUI, Subgraph, PartPicker } from "./views"
+import { Hints, ExampleUI, Subgraph, PartPicker, Drop } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
@@ -322,6 +322,9 @@ function App(props) {
           <Menu.Item key="/collection">
             <Link onClick={()=>{setRoute("/collection")}} to="/collection">Your Collection</Link>
           </Menu.Item>
+          <Menu.Item key="/partpicker">
+            <Link onClick={()=>{setRoute("/partpicker")}} to="/partpicker">Construct a Shoe</Link>
+          </Menu.Item>
           <Menu.Item key="/transfers">
             <Link onClick={()=>{setRoute("/transfers")}} to="/transfers">Transfers</Link>
           </Menu.Item>
@@ -498,6 +501,10 @@ function App(props) {
             
           <Route path="/partpicker">
             <PartPicker />  
+          </Route>
+          
+          <Route path="/drop/1">
+            <Drop />  
           </Route>
 
           <Route path="/transfers">
