@@ -325,34 +325,61 @@ function App(props) {
           <Route exact path="/entry">
             {/* 
             
-            entry screen code:
-            - 
-            
+            features:
+            - static preview
+            - on click event logs
             
             */}
-
+            {/* ******************************************** */}
+            {/* *************** Entry Screen *************** */}
+            {/* ******************************************** */}
             <div style={{ width: 1440, height: 1371, margin: "auto", marginLeft: 40, marginTop: 40, paddingBottom: 65}}>
 
             <Row gutter={16}>
               <Col className="gutter-row">
+                {/* Header - EVERY THING'S A REMIX */}
                 <Row gutter={16}>
-                  <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>EVERY THING'S A REMIX</span>
+                  <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>
+                    EVERY THING'S A REMIX
+                  </span>
                 </Row>
+                {/* Main shoe drop image - CTA */}
                 <Row gutter={16} style={{ marginTop: 16 }}>
-                  <img src={main_shoe} style = {{ width: 1360, height: 679 }}></img>
+                  <img 
+                    src={main_shoe} 
+                    style = {{ width: 1360, height: 679 }}
+                    onClick = {() => console.log("clicked primary shoe image!") }
+                    />
+
                 </Row>
+                {/* Other Drops - Sub-header */}
                 <Row gutter={16} style={{ marginTop: 40 }}>
-                  <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>Other Drops</span>
+                  <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>
+                    Other Drops
+                  </span>
                 </Row>
+                {/* Other Drops - Other shoes */}
                 <Row gutter={32} style={{ marginTop: 20 }}>
                   <Col>
-                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                    <img 
+                      src={secondary_shoe} 
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #1!") }
+                      />
                   </Col>
                   <Col>
-                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                  <img 
+                      src={secondary_shoe} 
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #2!") }
+                      />
                   </Col>
                   <Col>
-                    <img src={secondary_shoe} style = {{ width: 432, height: 421 }}></img>
+                  <img 
+                      src={secondary_shoe} 
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #3!") }
+                      />
                   </Col>
                 </Row>
               </Col>
