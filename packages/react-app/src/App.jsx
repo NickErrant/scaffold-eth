@@ -344,13 +344,47 @@ function App(props) {
                   </span>
                 </Row>
                 {/* Main shoe drop image - CTA */}
-                <Row gutter={16} style={{ marginTop: 16 }}>
+                <Row gutter={16} style={{ paddingTop: 16 }}>
                   <img 
                     src={main_shoe} 
                     style = {{ width: 1360, height: 679 }}
                     onClick = {() => console.log("clicked primary shoe image!") }
                     />
-
+                  <span 
+                    style={{ 
+                      textAlign: "left", 
+                      position: "absolute", 
+                      top: 551 + 
+                        (96 / 2) + // <- half the height of the text view
+                        16, // top padding of container
+                      left: 32,
+                      fontFamily:'stratos', 
+                      fontStyle:'black', 
+                      fontStyle:'italic', 
+                      fontWeight: 900, 
+                      fontSize: 38, 
+                      width: 235 
+                    }}>
+                    Drop #1 ”Kanye West”
+                  </span>
+                  <span 
+                    style={{ 
+                      textAlign: "left", 
+                      position: "absolute", 
+                      top: 579 + 
+                        (84 / 2) + // <- half the height of the text view
+                        16, // top padding of container
+                      left: 1068,
+                      fontFamily:'stratos', 
+                      fontStyle:'black', 
+                      fontStyle:'italic', 
+                      fontWeight: 900, 
+                      fontSize: 54,
+                      width: 260,
+                      textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
+                    }}>
+                    Enter Drop
+                  </span>
                 </Row>
                 {/* Other Drops - Sub-header */}
                 <Row gutter={16} style={{ marginTop: 40 }}>
