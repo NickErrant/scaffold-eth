@@ -12,7 +12,7 @@ import { Header, Account, Faucet, Ramp, Contract, GasGauge, Address, AddressInpu
 import { Transactor } from "./helpers";
 import { formatEther, parseEther } from "@ethersproject/units";
 //import Hints from "./Hints";
-import { Hints, ExampleUI, Subgraph, PartPicker } from "./views"
+import { Hints, ExampleUI, Subgraph, PartPicker, Drop } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
@@ -322,6 +322,9 @@ function App(props) {
           <Menu.Item key="/collection">
             <Link onClick={()=>{setRoute("/collection")}} to="/collection">Your Collection</Link>
           </Menu.Item>
+          <Menu.Item key="/partpicker">
+            <Link onClick={()=>{setRoute("/partpicker")}} to="/partpicker">Construct a Shoe</Link>
+          </Menu.Item>
           <Menu.Item key="/transfers">
             <Link onClick={()=>{setRoute("/transfers")}} to="/transfers">Transfers</Link>
           </Menu.Item>
@@ -367,49 +370,51 @@ function App(props) {
                     </span>
                   </Row>
                   {/* Main shoe drop image - CTA */}
-                  <Row gutter={16} style={{ paddingTop: 16 }}>
-                    <img
-                      class="box"
-                      src={main_shoe} 
-                      style = {{ width: 1360, height: 679 }}
-                      onClick = {() => console.log("clicked primary shoe image!") }
-                      />
-                    <span
-                      style={{ 
-                        textAlign: "left", 
-                        position: "absolute", 
-                        top: 551 + 
-                          (96 / 2) + // <- half the height of the text view
-                          16, // top padding of container
-                        left: 32,
-                        fontFamily:'stratos', 
-                        fontStyle:'black', 
-                        fontStyle:'italic', 
-                        fontWeight: 900, 
-                        fontSize: 38, 
-                        width: 235 
-                      }}>
-                      Drop #1 ”Kanye West”
-                    </span>
-                    <span 
-                      style={{ 
-                        textAlign: "left", 
-                        position: "absolute", 
-                        top: 579 + 
-                          (84 / 2) + // <- half the height of the text view
-                          16, // top padding of container
-                        left: 1068,
-                        fontFamily:'stratos', 
-                        fontStyle:'black', 
-                        fontStyle:'italic', 
-                        fontWeight: 900, 
-                        fontSize: 54,
-                        width: 260,
-                        textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
-                      }}>
-                      Enter Drop
-                    </span>
-                  </Row>
+                  <Link onClick={()=>{setRoute("/drop/1")}} to="/drop/1">
+                    <Row gutter={16} style={{ paddingTop: 16 }}>
+                      <img
+                        class="box"
+                        src={main_shoe} 
+                        style = {{ width: 1360, height: 679 }}
+                        onClick = {() => console.log("clicked primary shoe image!") }
+                        />
+                      <span
+                        style={{ 
+                          textAlign: "left", 
+                          position: "absolute", 
+                          top: 551 + 
+                            (96 / 2) + // <- half the height of the text view
+                            16, // top padding of container
+                          left: 32,
+                          fontFamily:'stratos', 
+                          fontStyle:'black', 
+                          fontStyle:'italic', 
+                          fontWeight: 900, 
+                          fontSize: 38, 
+                          width: 235 
+                        }}>
+                        Drop #1 ”Kanye West”
+                      </span>
+                      <span 
+                        style={{ 
+                          textAlign: "left", 
+                          position: "absolute", 
+                          top: 579 + 
+                            (84 / 2) + // <- half the height of the text view
+                            16, // top padding of container
+                          left: 1068,
+                          fontFamily:'stratos', 
+                          fontStyle:'black', 
+                          fontStyle:'italic', 
+                          fontWeight: 900, 
+                          fontSize: 54,
+                          width: 260,
+                          textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
+                        }}>
+                        Enter Drop
+                      </span>
+                    </Row>
+                  </Link>
                   {/* Other Drops - Sub-header */}
                   <Row gutter={16} style={{ marginTop: 40 }}>
                     <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>
@@ -498,6 +503,10 @@ function App(props) {
             
           <Route path="/partpicker">
             <PartPicker />  
+          </Route>
+          
+          <Route path="/drop/1">
+            <Drop />  
           </Route>
 
           <Route path="/transfers">
