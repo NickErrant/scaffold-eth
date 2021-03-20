@@ -16,10 +16,25 @@ import { Hints, ExampleUI, Subgraph } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
+
+// import image assets
+import main_shoe from './assets/main_shoe.png'; // Tell Webpack this JS file uses this image
+import secondary_shoe from './assets/secondary_shoe.png'; // Tell Webpack this JS file uses this image
+
+// import styles
+import './styles/Entry.css'
+
 const { BufferList } = require('bl')
 // https://www.npmjs.com/package/ipfs-http-client
 const ipfsAPI = require('ipfs-http-client');
 const ipfs = ipfsAPI({host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
+
+
+console.log('main_shoe')
+
+// when using "%PUBLIC_URL%" ->
+console.log(main_shoe); // /static/media/main_shoe.e49e51df.png
+
 /*
     Welcome to 🏗 scaffold-eth !
 
@@ -281,6 +296,8 @@ function App(props) {
 
   const [ transferToAddresses, setTransferToAddresses ] = useState({})
 
+  const style = { background: '#0092ff', padding: '8px 0' };
+
   return (
     <div className="App">
 
@@ -290,8 +307,11 @@ function App(props) {
       <BrowserRouter>
 
         <Menu style={{ textAlign:"center" }} selectedKeys={[route]} mode="horizontal">
-          <Menu.Item key="/">
-            <Link onClick={()=>{setRoute("/")}} to="/">YourCollectibles</Link>
+          <Menu.Item key="/entry">
+            <Link onClick={()=>{setRoute("/entry")}} to="/entry">Enter Drop</Link>
+          </Menu.Item>
+          <Menu.Item key="/collection">
+            <Link onClick={()=>{setRoute("/collection")}} to="/collection">Your Collection</Link>
           </Menu.Item>
           <Menu.Item key="/transfers">
             <Link onClick={()=>{setRoute("/transfers")}} to="/transfers">Transfers</Link>
@@ -308,7 +328,118 @@ function App(props) {
         </Menu>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/entry">
+            {/* 
+            
+            Features:
+             - Static display
+             - On shoe image click log events
+             - Drop shadow on hover over shoe image
+            
+            */}
+            {/* ******************************************** */}
+            {/* *************** Entry Screen *************** */}
+            {/* ******************************************** */}
+            <div
+              style={{ 
+                width: 1440,
+                height: 1371,
+                margin: "auto",
+                marginLeft: 40,
+                marginTop: 40,
+                paddingBottom: 65,
+              }}>
+              <Row gutter={16}>
+                <Col className="gutter-row">
+                  {/* Header - EVERY THING'S A REMIX */}
+                  <Row gutter={16}>
+                    <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>
+                      EVERY THING'S A REMIX
+                    </span>
+                  </Row>
+                  {/* Main shoe drop image - CTA */}
+                  <Row gutter={16} style={{ paddingTop: 16 }}>
+                    <img
+                      class="box"
+                      src={main_shoe} 
+                      style = {{ width: 1360, height: 679 }}
+                      onClick = {() => console.log("clicked primary shoe image!") }
+                      />
+                    <span
+                      style={{ 
+                        textAlign: "left", 
+                        position: "absolute", 
+                        top: 551 + 
+                          (96 / 2) + // <- half the height of the text view
+                          16, // top padding of container
+                        left: 32,
+                        fontFamily:'stratos', 
+                        fontStyle:'black', 
+                        fontStyle:'italic', 
+                        fontWeight: 900, 
+                        fontSize: 38, 
+                        width: 235 
+                      }}>
+                      Drop #1 ”Kanye West”
+                    </span>
+                    <span 
+                      style={{ 
+                        textAlign: "left", 
+                        position: "absolute", 
+                        top: 579 + 
+                          (84 / 2) + // <- half the height of the text view
+                          16, // top padding of container
+                        left: 1068,
+                        fontFamily:'stratos', 
+                        fontStyle:'black', 
+                        fontStyle:'italic', 
+                        fontWeight: 900, 
+                        fontSize: 54,
+                        width: 260,
+                        textShadow: "0px 4px 2px rgba(0, 0, 0, 0.25)"
+                      }}>
+                      Enter Drop
+                    </span>
+                  </Row>
+                  {/* Other Drops - Sub-header */}
+                  <Row gutter={16} style={{ marginTop: 40 }}>
+                    <span style={{ fontFamily:'stratos', fontStyle:'medium', fontSize: 40 }}>
+                      Other Drops
+                    </span>
+                  </Row>
+                  {/* Other Drops - Other shoes */}
+                  <Row gutter={32} style={{ marginTop: 20 }}>
+                    <Col>
+                      <img
+                        class="box"
+                        src={secondary_shoe} 
+                        style = {{ width: 432, height: 421 }}
+                        onClick = {() => console.log("clicked secondary shoe image #1!") }
+                        />
+                    </Col>
+                    <Col>
+                    <img
+                      class="box"
+                      src={secondary_shoe} 
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #2!") }
+                      />
+                    </Col>
+                    <Col>
+                    <img
+                      class="box"
+                      src={ secondary_shoe }
+                      style = {{ width: 432, height: 421 }}
+                      onClick = {() => console.log("clicked secondary shoe image #3!") }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </div>
+          </Route>
+
+          <Route exact path="/collection">
             {/*
                 🎛 this scaffolding is full of commonly used components
                 this <Contract/> component will automatically parse your ABI
