@@ -290,8 +290,11 @@ function App(props) {
       <BrowserRouter>
 
         <Menu style={{ textAlign:"center" }} selectedKeys={[route]} mode="horizontal">
-          <Menu.Item key="/">
-            <Link onClick={()=>{setRoute("/")}} to="/">YourCollectibles</Link>
+          <Menu.Item key="/entry">
+            <Link onClick={()=>{setRoute("/entry")}} to="/entry">Enter Drop</Link>
+          </Menu.Item>
+          <Menu.Item key="/collection">
+            <Link onClick={()=>{setRoute("/collection")}} to="/collection">Your Collection</Link>
           </Menu.Item>
           <Menu.Item key="/transfers">
             <Link onClick={()=>{setRoute("/transfers")}} to="/transfers">Transfers</Link>
@@ -308,7 +311,16 @@ function App(props) {
         </Menu>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/entry">
+            {/* 
+            
+            entry screen code:
+            - 
+            
+            
+            */}
+          </Route>
+          <Route exact path="/collection">
             {/*
                 🎛 this scaffolding is full of commonly used components
                 this <Contract/> component will automatically parse your ABI
