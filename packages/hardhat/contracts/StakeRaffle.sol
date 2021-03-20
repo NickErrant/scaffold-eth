@@ -19,7 +19,6 @@ contract StakeRaffle is Ownable {
       uint256 lBonus;
       uint256 ticketIndex;
       uint256 numOfWinners;
-      uint256[] winningNumbers;
   }
 
   struct Account {
@@ -44,6 +43,7 @@ contract StakeRaffle is Ownable {
   mapping (address => Account) public accounts;
   mapping (uint256 => Ticket) public tickets;
   mapping (address => bool) public whitelist;
+  mapping (uint256 => uint256[]) public winners;
   IERC20 public paymentToken;
   uint256 public raffleCounter;
 
@@ -52,7 +52,7 @@ contract StakeRaffle is Ownable {
   }
 
   function getTicketId(address account, uint256 raffleId) public view returns (uint256) {
-    return keccak256(abi.encodePacked(account,raffleId));
+    return uint256(keccak256(abi.encodePacked(account,raffleId)));
   }
 
   function getTicketStatus(uint256 ticketId) public view returns (TicketStatus) {
@@ -60,10 +60,9 @@ contract StakeRaffle is Ownable {
   }
 
   function mintTicket(address account, uint raffleId, uint segLength) internal {
-      uint storage ticketIndex = raffles[raffleId].ticketIndex;
-      Ticket storage ticket = tickets[getTicketId(account, raffleId)];
-      ticket = Ticket(ticketIndex, ticketIndex + segLength - 1, TicketStatus.ENTERED);
-      ticketIndex += segLength;
+      uint ticketIndex = raffles[raffleId].ticketIndex;
+      tickets[getTicketId(account, raffleId)] = Ticket(ticketIndex, ticketIndex + segLength - 1, TicketStatus.ENTERED);
+      raffles[raffleId].ticketIndex += segLength;
   }
 
   function updateTicket(uint256 ticketId, TicketStatus status) internal {
@@ -88,7 +87,8 @@ contract StakeRaffle is Ownable {
           entryFee: entryFee,
           prizeId: prizeId,
           lBonus: lBonus,
-          numOfWinners: numOfWinners
+          numOfWinners: numOfWinners,
+          ticketIndex: 0
       });
   }
 
@@ -98,15 +98,15 @@ contract StakeRaffle is Ownable {
       address user = msg.sender;
       require(whitelist[user], "Not whitelisted");
       uint256 raffleTicket = getTicketId(user, raffleId);
-      require(getTicketStatus(raffleTicket) == 0, "Already registered");
+      require(getTicketStatus(raffleTicket) == TicketStatus.NO_TICKET, "Already registered");
 
       Raffle memory raffle = raffles[raffleId];
       require(block.timestamp >= raffle.startTime && block.timestamp <= raffle.endTime, "Raffle not active");
       
       Account storage account = accounts[user];
       uint256 availableBalance = account.cashBalance - account.lockedCash;
-      if (avaibleBalance < raffle.entryFee) {
-          paymentToken.safeTransferFrom(user, this.address, raffle.entryFee - avaibleBalance);
+      if (availableBalance < raffle.entryFee) {
+          paymentToken.safeTransferFrom(user, address(this), raffle.entryFee - availableBalance);
       }
       
       account.lockedCash += raffle.entryFee;
@@ -124,7 +124,7 @@ contract StakeRaffle is Ownable {
   function deposit(uint256 amount)
     public
     {
-        paymentToken.safeTransferFrom(user, this.address, amount);
+        paymentToken.safeTransferFrom(msg.sender, address(this), amount);
         Account storage account = accounts[msg.sender];
         account.cashBalance += amount;
     }
@@ -132,17 +132,19 @@ contract StakeRaffle is Ownable {
   function redeem(uint256 raffleId) public {
       address user = msg.sender;
       uint ticketId = getTicketId(user, raffleId);
-      Ticket raffleTicket = tickets[ticketId];
+      Ticket memory raffleTicket = tickets[ticketId];
       require(raffleTicket.status == TicketStatus.ENTERED);
       Raffle memory raffle = raffles[raffleId];
-      uint arrLen = raffle.winningNumbers.length;
+      uint256 arrLen = winners[raffleId].length;
+      uint256[] memory arr = winners[raffleId];
       require(arrLen > 0, "Awaiting Draw");
 
       bool didWin;
       for (uint256 i = 0; i < arrLen; i++) {
-          uint wNum = raffle.winningNumbers[i];
+          uint wNum = arr[i];
           if (raffleTicket.segStart <= wNum && wNum <= raffleTicket.segEnd) {
               didWin = true;
+              break;
           }
       }
 
@@ -159,13 +161,13 @@ contract StakeRaffle is Ownable {
       updateTicket(ticketId, TicketStatus.PAID);
   }
 
-  function drawWinners(uint256 raffleID, uint256[] winners)
+  function drawWinners(uint256 raffleId, uint256[] memory winNos)
     public
     onlyOwner
     {
         Raffle storage raffle = raffles[raffleId];
-        require(block.timestamp > raffle.endTime && raffle.endTime != 0 && raffle.winningNumbers.length == 0, "Raffle not over");
-        require(raffle.numofWinners == winners.length, "Wrong number of winners");
-        raffle.winningNumbers = winners;
+        require(block.timestamp > raffle.endTime && raffle.endTime != 0 && winners[raffleId].length == 0, "Raffle not over");
+        require(raffle.numOfWinners == winNos.length, "Wrong number of winners");
+        winners[raffleId] = winNos;
     }
 }
