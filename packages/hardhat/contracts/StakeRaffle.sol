@@ -129,7 +129,7 @@ contract StakeRaffle is Ownable {
         account.cashBalance += amount;
     }
 
-  function redeem(raffleId) public {
+  function redeem(uint256 raffleId) public {
       address user = msg.sender;
       uint ticketId = getTicketId(user, raffleId);
       Ticket raffleTicket = tickets[ticketId];
