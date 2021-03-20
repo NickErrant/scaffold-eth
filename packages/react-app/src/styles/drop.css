@@ -1,0 +1,121 @@
+.drop {
+  font-family: 'stratos';
+}
+
+.drop__hero {
+  background-color: #F0F5F4;
+  background-image: linear-gradient(to right, #F0F1F5, rgba(240,241,245,0) 34%),radial-gradient(farthest-side at 100% 100%, #F5F5EF 16%, rgba(245,245,239,0) 100%);
+  display: flex;
+  flex-direction: column;
+  height: 565px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.drop__title {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 44px;
+  padding: 1rem 0 0 2rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.drop__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 2rem 0;
+  width: 100%;
+}
+
+.drop__number {
+  font-weight: 600;
+  font-size: 30px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.drop__price {
+  color: #C496FF;
+  font-weight: 600;
+  font-size: 24px;
+  margin-top: 0.5rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+.drop__price span {
+  color: #A5A5A5;
+  display: block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 10px;
+}
+
+.drop__name {
+  font-weight: 800;
+  font-size: 60px;
+  line-height: 60px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.drop__button {
+  align-items: center;
+  background-color: #000000;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  height: 3.5rem;  
+  justify-content: center;
+  margin-top: 2rem;
+  width: 12rem;
+
+  font-weight: 600;
+  font-style: italic;
+  font-size: 24px;
+}
+
+.drop__desc {
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 2rem;
+  max-width: 540px;
+  text-align: left;
+}
+
+
+.drop__image {
+  align-items: center;
+  background-color: #F0F5F4;
+  background-image: linear-gradient(to right, #F0F1F5, rgba(240,241,245,0) 34%),radial-gradient(farthest-side at 100% 100%, #F5F5EF 16%, rgba(245,245,239,0) 100%);
+  border-radius: 1rem;
+  display: flex;
+  height: 600px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 626px;
+}
+
+.drop__image img {
+  margin-top: -2rem;
+  position: relative;
+  width: 450px;
+  z-index: 5;
+}
+
+.drop__bg {
+  opacity: 0.7;
+  position: absolute !important;
+  top: 2rem;
+  width: auto !important;
+  z-index: 2;
+}
+
+.drop__right {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
