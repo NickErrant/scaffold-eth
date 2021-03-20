@@ -1,0 +1,170 @@
+.partpicker {
+  font-family: 'stratos';
+}
+
+.partpicker__hero {
+  background-color: #F0F5F4;
+  background-image: linear-gradient(to right, #F0F1F5, rgba(240,241,245,0) 34%),radial-gradient(farthest-side at 100% 100%, #F5F5EF 16%, rgba(245,245,239,0) 100%);
+  display: flex;
+  flex-direction: column;
+  height: 565px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.partpicker__hero:hover img {
+  opacity: 1 !important;
+  z-index: 6 !important;
+}
+
+.partpicker__shoe {
+  height: 406px;
+  margin: auto;
+  margin-top: 2rem;
+  position: relative;
+  width: 609px;
+}
+
+.partpicker__shoe img {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+}
+
+.partpicker__hidden {
+  opacity: 0.3;
+  z-index: 2 !important;
+}
+
+.partpicker__title {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 34px;
+  text-transform: uppercase;
+  left: 2rem;
+  position: absolute;
+  top: 1rem;
+}
+
+.parts {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 2rem;
+}
+
+.parts__arrow {
+  cursor: pointer;
+}
+
+.part {
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 100px -5px rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+  display: flex;
+  height: 4rem;  
+  justify-content: center;
+  margin: 0 2rem;
+  width: 16rem;
+}
+
+.part img {
+  margin-left: 1rem;
+}
+
+
+.part__name {
+  font-weight: 800;
+  font-size: 26px;
+}
+
+.part__type {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.part__price {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+
+
+
+.variations  {
+  display: flex;
+  justify-content: center;
+}
+
+.variation {
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 100px -5px rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 6rem;  
+  justify-content: center;
+  margin: 0 2rem;
+  width: 16rem;
+}
+
+.variation__name {
+  font-weight: 500;
+  font-style: italic;
+  font-size: 26px;
+}
+
+.variation__price {
+  color: #43E31B;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.variation__price--collection {
+  color: #A5A5A5;
+}
+
+.variation--selected {
+  border: 2px solid #C496FF;
+}
+
+
+
+.construct {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.construct__price {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+.construct__price span {
+  color: #A5A5A5;
+  font-weight: 500;
+  font-size: 22px;
+}
+.construct__button {
+  align-items: center;
+  background-color: #000000;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  height: 3.5rem;  
+  justify-content: center;
+  margin: 0 2rem;
+  width: 12rem;
+
+  font-weight: 700;
+  font-style: italic;
+  font-size: 24px;
+}
