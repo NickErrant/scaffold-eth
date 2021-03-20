@@ -119,7 +119,7 @@
 }
 
 .variation__price {
-  color: #C496FF;
+  color: #43E31B;
   font-weight: 500;
   font-size: 18px;
 }
@@ -131,6 +131,7 @@
 .variation--selected {
   border: 2px solid #C496FF;
 }
+
 
 
 .construct {
