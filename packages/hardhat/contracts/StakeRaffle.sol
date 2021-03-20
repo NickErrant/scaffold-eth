@@ -88,7 +88,7 @@ contract StakeRaffle is Ownable {
           entryFee: entryFee,
           prizeId: prizeId,
           lBonus: lBonus,
-          numofWinners
+          numOfWinners: numOfWinners
       });
   }
 
@@ -133,7 +133,7 @@ contract StakeRaffle is Ownable {
       address user = msg.sender;
       uint ticketId = getTicketId(user, raffleId);
       Ticket raffleTicket = tickets[ticketId];
-      require(raffleTicket.status == TicketStatus.ENTERED)
+      require(raffleTicket.status == TicketStatus.ENTERED);
       Raffle memory raffle = raffles[raffleId];
       uint arrLen = raffle.winningNumbers.length;
       require(arrLen > 0, "Awaiting Draw");
