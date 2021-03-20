@@ -12,7 +12,7 @@ import { Header, Account, Faucet, Ramp, Contract, GasGauge, Address, AddressInpu
 import { Transactor } from "./helpers";
 import { formatEther, parseEther } from "@ethersproject/units";
 //import Hints from "./Hints";
-import { Hints, ExampleUI, Subgraph } from "./views"
+import { Hints, ExampleUI, Subgraph, PartPicker } from "./views"
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI, NETWORK, NETWORKS } from "./constants";
 import ReactJson from 'react-json-view'
@@ -364,6 +364,10 @@ function App(props) {
             </div>
 
           </Route>
+            
+          <Route path="/partpicker">
+            <PartPicker />  
+          </Route>
 
           <Route path="/transfers">
             <div style={{ width:600, margin: "auto", marginTop:32, paddingBottom:32 }}>
@@ -464,8 +468,6 @@ function App(props) {
         </Switch>
       </BrowserRouter>
 
-      <ThemeSwitch />
-
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
@@ -482,46 +484,6 @@ function App(props) {
          />
          {faucetHint}
       </div>
-
-      {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-       <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
-         <Row align="middle" gutter={[4, 4]}>
-           <Col span={8}>
-             <Ramp price={price} address={address} networks={NETWORKS}/>
-           </Col>
-
-           <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
-             <GasGauge gasPrice={gasPrice} />
-           </Col>
-           <Col span={8} style={{ textAlign: "center", opacity: 1 }}>
-             <Button
-               onClick={() => {
-                 window.open("https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA");
-               }}
-               size="large"
-               shape="round"
-             >
-               <span style={{ marginRight: 8 }} role="img" aria-label="support">
-                 💬
-               </span>
-               Support
-             </Button>
-           </Col>
-         </Row>
-
-         <Row align="middle" gutter={[4, 4]}>
-           <Col span={24}>
-             {
-               /*  if the local provider has a signer, let's show the faucet:  */
-               faucetAvailable ? (
-                 <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider}/>
-               ) : (
-                 ""
-               )
-             }
-           </Col>
-         </Row>
-       </div>
 
     </div>
   );
