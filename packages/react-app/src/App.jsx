@@ -296,7 +296,16 @@ function App(props) {
 
   const [ transferToAddresses, setTransferToAddresses ] = useState({})
 
-  const style = { background: '#0092ff', padding: '8px 0' };
+  function makeShoe(id) {
+    return {
+      "id" : id,
+      "imageUrl" : secondary_shoe
+    }
+  }
+
+  const shoeCollection = [
+    ...Array(18).keys()
+  ].map((i) => makeShoe(i))
 
   return (
     <div className="App">
@@ -307,8 +316,8 @@ function App(props) {
       <BrowserRouter>
 
         <Menu style={{ textAlign:"center" }} selectedKeys={[route]} mode="horizontal">
-          <Menu.Item key="/entry">
-            <Link onClick={()=>{setRoute("/entry")}} to="/entry">Enter Drop</Link>
+          <Menu.Item key="/">
+            <Link onClick={()=>{setRoute("/")}} to="/">Enter Drop</Link>
           </Menu.Item>
           <Menu.Item key="/collection">
             <Link onClick={()=>{setRoute("/collection")}} to="/collection">Your Collection</Link>
@@ -328,7 +337,7 @@ function App(props) {
         </Menu>
 
         <Switch>
-          <Route exact path="/entry">
+          <Route exact path="/">
             {/* 
             
             Features:
@@ -412,7 +421,7 @@ function App(props) {
                     <Col>
                       <img
                         class="box"
-                        src={secondary_shoe} 
+                        src={ secondary_shoe } 
                         style = {{ width: 432, height: 421 }}
                         onClick = {() => console.log("clicked secondary shoe image #1!") }
                         />
@@ -420,7 +429,7 @@ function App(props) {
                     <Col>
                     <img
                       class="box"
-                      src={secondary_shoe} 
+                      src={ secondary_shoe } 
                       style = {{ width: 432, height: 421 }}
                       onClick = {() => console.log("clicked secondary shoe image #2!") }
                       />
@@ -440,60 +449,51 @@ function App(props) {
           </Route>
 
           <Route exact path="/collection">
-            {/*
-                🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
+            {/* 
+            
+            Features:
+             - Static list of your collection items
+             - Drop shadow on hover over shoe image
+             - Log click event on shoe image
+            
             */}
-
-            <div style={{ width:640, margin: "auto", marginTop:32, paddingBottom:32 }}>
-              <List
-                bordered
-                dataSource={yourCollectibles}
-                renderItem={(item) => {
-                  const id = item.id.toNumber()
-                  return (
-                    <List.Item key={id+"_"+item.uri+"_"+item.owner}>
-
-                      <Card title={(
-                        <div>
-                          <span style={{fontSize:16, marginRight:8}}>#{id}</span> {item.name}
-                        </div>
-                      )}>
-                      <div><img src={item.image} style={{maxWidth:150}} /></div>
-                      <div>{item.description}</div>
-                      </Card>
-
-                      <div>
-                        owner: <Address
-                            address={item.owner}
-                            ensProvider={mainnetProvider}
-                            blockExplorer={blockExplorer}
-                            fontSize={16}
+            {/* ********************************************** */}
+            {/* *************** You Collection *************** */}
+            {/* ********************************************** */}
+            <div
+              style={{ 
+                width: 1440,
+                height: 1371,
+                margin: "auto",
+                marginLeft: 40,
+                marginTop: 40,
+                paddingBottom: 65,
+              }}>
+              <Row gutter={16}>
+                <Col className="gutter-row" style={{ paddingBottom: 64}}>
+                  {/* Header - EVERY THING'S A REMIX */}
+                  <Row gutter={16}>
+                    <span style={{ fontFamily:'stratos', fontStyle:'black', fontStyle:'italic', fontWeight: 900, fontSize: 44 }}>
+                      EVERY THING'S A REMIX
+                    </span>
+                  </Row>
+                  {/* Other Drops - Sub-header */}
+                  
+                  <Row gutter={[16, 46]} style={{ marginTop: 23 }}>
+                    { shoeCollection.map( item => 
+                      <Col className="gutter-row" span={8}>
+                        <img
+                          class="box"
+                          src={ item.imageUrl }
+                          style = {{ width: 432, height: 421 }}
+                          onClick = {() => console.log("clicked on shoe #" + (item.id + 1)) }
                         />
-                        <AddressInput
-                          ensProvider={mainnetProvider}
-                          placeholder="transfer to address"
-                          value={transferToAddresses[id]}
-                          onChange={(newValue)=>{
-                            let update = {}
-                            update[id] = newValue
-                            setTransferToAddresses({ ...transferToAddresses, ...update})
-                          }}
-                        />
-                        <Button onClick={()=>{
-                          console.log("writeContracts",writeContracts)
-                          tx( writeContracts.YourCollectible.transferFrom(address, transferToAddresses[id], id) )
-                        }}>
-                          Transfer
-                        </Button>
-                      </div>
-                    </List.Item>
-                  )
-                }}
-              />
+                      </Col>
+                    ) }
+                  </Row>
+                </Col>
+              </Row>
             </div>
-
           </Route>
             
           <Route path="/partpicker">
