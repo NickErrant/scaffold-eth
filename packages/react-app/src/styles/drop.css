@@ -62,7 +62,7 @@
 .drop__button {
   align-items: center;
   background-color: #000000;
-  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.05);
   border-radius: 2rem;
   color: #FFFFFF;
   cursor: pointer;
@@ -75,6 +75,12 @@
   font-weight: 600;
   font-style: italic;
   font-size: 24px;
+
+  transition: box-shadow .3s;
+  float: left;
+}
+.drop__button:hover {
+  box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.35);
 }
 
 .drop__desc {
