@@ -47,6 +47,7 @@ function Drop({ tx, readContracts, writeContracts }) {
 
   function makeRaffleCTAButton() {
     if (entered) {
+      // TODO: check the contract if current user won raffle
       if (won) {
         // RAFFLE WON
         return (<div className="drop__button drop__button--win">
