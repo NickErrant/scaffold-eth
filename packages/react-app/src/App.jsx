@@ -20,6 +20,10 @@ import ReactJson from 'react-json-view'
 // import image assets
 import main_shoe from './assets/main_shoe.png'; // Tell Webpack this JS file uses this image
 import secondary_shoe from './assets/secondary_shoe.png'; // Tell Webpack this JS file uses this image
+import kanyeSole from './assets/parts/kanye-sole.png'; // Tell Webpack this JS file uses this image
+import kanyeHeel from './assets/parts/kanye-heeltab.png'; // Tell Webpack this JS file uses this image
+import kanyeSymbol from './assets/parts/kanye-symbol.png'; // Tell Webpack this JS file uses this image
+import constructedShoe from './assets/parts/constructed.png'; // Tell Webpack this JS file uses this image
 
 // import styles
 import './styles/Entry.css'
@@ -307,6 +311,12 @@ function App(props) {
     ...Array(18).keys()
   ].map((i) => makeShoe(i))
 
+
+  function mintShoeNft() {
+    window.location.href = "/collection?minted=true"
+    setRoute("/collection?minted=true")
+  }
+
   return (
     <div className="App">
 
@@ -393,7 +403,7 @@ function App(props) {
                           fontSize: 38, 
                           width: 235 
                         }}>
-                        Drop #1 ”Kanye West”
+                        Drop #1 ”Dropout”
                       </span>
                       <span 
                         style={{ 
@@ -453,13 +463,18 @@ function App(props) {
             </div>
           </Route>
 
-          <Route exact path="/collection">
+          <Route path="/collection">
             {/* 
             
             Features:
              - Static list of your collection items
              - Drop shadow on hover over shoe image
              - Log click event on shoe image
+
+             import kanyeSole from './assets/parts/kanye-sole.png'; // Tell Webpack this JS file uses this image
+import kanyeHeel from './assets/parts/kanye-heeltab.png'; // Tell Webpack this JS file uses this image
+import kanyeSymbol from './assets/parts/kanye-symbol.png'; // Tell Webpack this JS file uses this image
+import constructedShoe 
             
             */}
             {/* ********************************************** */}
@@ -484,25 +499,47 @@ function App(props) {
                   </Row>
                   {/* Other Drops - Sub-header */}
                   
-                  <Row gutter={[16, 46]} style={{ marginTop: 23 }}>
-                    { shoeCollection.map( item => 
+                  {window.location.search == "?minted=true"
+                  ? <Row gutter={[16, 46]} style={{ marginTop: 23 }}>
                       <Col className="gutter-row" span={8}>
                         <img
                           class="box"
-                          src={ item.imageUrl }
+                          src={ constructedShoe }
                           style = {{ width: 432, height: 421 }}
-                          onClick = {() => console.log("clicked on shoe #" + (item.id + 1)) }
                         />
                       </Col>
-                    ) }
-                  </Row>
+                    </Row>
+                  : <Row gutter={[16, 46]} style={{ marginTop: 23 }}>
+                      <Col className="gutter-row" span={8}>
+                        <img
+                          class="box"
+                          src={ kanyeSole }
+                          style = {{ width: 432, height: 421 }}
+                        />
+                      </Col>
+                      <Col className="gutter-row" span={8}>
+                        <img
+                          class="box"
+                          src={ kanyeHeel }
+                          style = {{ width: 432, height: 421 }}
+                        />
+                      </Col>
+                      <Col className="gutter-row" span={8}>
+                        <img
+                          class="box"
+                          src={ kanyeSymbol }
+                          style = {{ width: 432, height: 421 }}
+                        />
+                      </Col>
+                    </Row>
+                  }
                 </Col>
               </Row>
             </div>
           </Route>
             
           <Route path="/partpicker">
-            <PartPicker />  
+            <PartPicker mintShoeNft={mintShoeNft}/>  
           </Route>
           
           <Route path="/drop/1">

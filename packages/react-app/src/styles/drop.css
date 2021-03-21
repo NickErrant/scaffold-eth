@@ -94,6 +94,17 @@
   color: white;
 }
 
+.drop__button--waiting {
+  background-color: white;
+  border: solid 2px #C496FF;
+  color: #C496FF;
+}
+
+.drop__button--win {
+  background-color: #C496FF;
+  color: white;
+}
+
 .drop__desc {
   font-weight: 500;
   font-size: 20px;
