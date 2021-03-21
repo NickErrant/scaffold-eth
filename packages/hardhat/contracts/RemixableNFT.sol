@@ -22,10 +22,14 @@ contract RemixableNFT is ERC1155Receiver, ERC1155PresetMinterPauser {
 
 
   constructor(address _paymentToken) public ERC1155PresetMinterPauser("https://game.example/api/item/{id}.json") {
-        raffle = new StakeRaffle();
-        wrapper = new Remix721();
         paymentToken = IERC20(_paymentToken);
-        raffle.updatePaymentToken(_paymentToken);
+    }
+
+    function register(address st, address r) public {
+        require(hasRole(MINTER_ROLE, _msgSender()));
+        raffle = StakeRaffle(st);
+        wrapper = Remix721(r);
+        raffle.updatePaymentToken(address(paymentToken));
         raffle.updatePartsToken(address(this));
     }
 

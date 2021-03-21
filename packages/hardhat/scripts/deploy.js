@@ -11,7 +11,8 @@ const main = async () => {
   const exampleToken = await deploy("ExampleToken");
   const remixableNFT = await deploy("RemixableNFT", [exampleToken.address]); // <-- add in constructor args like line 19 vvvv
 
-  const stakeRaffle = await deploy("StakeRaffle");
+  const stakeRaffle = await deploy("StakeRaffle", [remixableNFT.address]);
+  const remix721 = await deploy("Remix721", [remixableNFT.address]);
 
   // const remix721 = await ethers.getContractAt('Remix721', remixableNFT.);
   // const stakeRaffle = await ethers.getContractAt('StakeRaffle', "0xCafac3dD18aC6c6e92c921884f9E4176737C052c"); //<-- if you want to instantiate a version of a contract at a specific address!

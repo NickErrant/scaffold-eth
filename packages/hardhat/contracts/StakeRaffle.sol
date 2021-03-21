@@ -50,6 +50,10 @@ contract StakeRaffle is ERC1155Receiver, Ownable {
   IERC1155 public parts;
   uint256 public raffleCounter;
 
+  constructor(address own) {
+    transferOwnership(own);
+  }
+
   function updatePaymentToken(address cash) public onlyOwner {
       paymentToken = IERC20(cash);
   }

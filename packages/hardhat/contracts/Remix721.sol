@@ -22,9 +22,10 @@ contract Remix721 is ERC1155Receiver, ERC721Burnable, Ownable {
   }
   mapping (uint => Deposit) private deposits;
 
-  constructor() public ERC721("Remix", "ETAR") {
-    parts = IERC1155(msg.sender);
+  constructor(address own) ERC721("Remix", "ETAR") {
+    parts = IERC1155(own);
     _setBaseURI("https://ipfs.io/ipfs/");
+    transferOwnership(own);
   }
 
   function mintItem(address to, string memory tokenURI)
