@@ -21,6 +21,29 @@ import shoeOneBackPanel from "../assets/shoe1/shoe1-backpanel.png";
 import shoeOneHeelTab from "../assets/shoe1/shoe1-heeltab.png";
 import shoeOneSymbol from "../assets/shoe1/shoe1-symbol.png";
 
+import ariSole from "../assets/ari/ari-sole.png";
+import ariGuard from "../assets/ari/ari-guard.png";
+import ariToeBox from "../assets/ari/ari-toebox.png";
+import ariMidPanel from "../assets/ari/ari-midpanel.png";
+import ariBackPanel from "../assets/ari/ari-backpanel.png";
+import ariHeelTab from "../assets/ari/ari-heeltab.png";
+import ariSymbol from "../assets/ari/ari-symbol.png";
+
+import mcaSole from "../assets/mca/mca-sole.png";
+import mcaGuard from "../assets/mca/mca-guard.png";
+import mcaToeBox from "../assets/mca/mca-toebox.png";
+import mcaMidPanel from "../assets/mca/mca-midpanel.png";
+import mcaBackPanel from "../assets/mca/mca-backpanel.png";
+import mcaHeelTab from "../assets/mca/mca-heeltab.png";
+import mcaSymbol from "../assets/mca/mca-symbol.png";
+
+import henderSole from "../assets/hender/hender-sole.png";
+import henderGuard from "../assets/hender/hender-guard.png";
+import henderToeBox from "../assets/hender/hender-toebox.png";
+import henderMidPanel from "../assets/hender/hender-midpanel.png";
+import henderBackPanel from "../assets/hender/hender-backpanel.png";
+import henderHeelTab from "../assets/hender/hender-heeltab.png";
+
 
 
 
@@ -28,31 +51,38 @@ function PartPicker(props) {
   const partList = [
     { 
       type: "Sole",
-      image: sole
+      icon: sole,
+      images: [shoeOneSole, ariSole, mcaSole, henderSole]
     },
     { 
       type: "Guard",
-      image: guard
+      icon: guard,
+      images: [shoeOneGuard, ariGuard, mcaGuard, henderGuard]
     },
     { 
       type: "Toe Box",
-      image: toeBox
+      icon: toeBox,
+      images: [shoeOneToeBox, ariToeBox, mcaToeBox , henderToeBox]
     },
     { 
       type: "Mid Panel",
-      image: midPanel
+      icon: midPanel,
+      images: [shoeOneMidPanel, ariMidPanel, mcaMidPanel, henderMidPanel]
     },
     { 
       type: "Back Panel",
-      image: backPanel
+      icon: backPanel,
+      images: [shoeOneBackPanel, ariBackPanel, mcaBackPanel, henderBackPanel]
     },
     { 
       type: "Heel Tab",
-      image: heelTab
+      icon: heelTab,
+      images: [shoeOneHeelTab, ariHeelTab, mcaHeelTab, henderHeelTab]
     },
     { 
       type: "Symbol",
-      image: symbol
+      icon: symbol,
+      images: [shoeOneSymbol, ariSymbol, mcaSymbol, ""]
     },
   ]
   const variationList = [
@@ -61,15 +91,15 @@ function PartPicker(props) {
       price: "14.77 ETH ($26,975)"
     },
     { 
-      name: "UNC",
-      price: "In Collection"
-    },
-    { 
-      name: "Camo",
+      name: "Menthol 10s",
       price: "14.77 ETH ($26,975)"
     },
     { 
-      name: "Volt Green",
+      name: "MCA",
+      price: "In Collection"
+    },
+    { 
+      name: "Hender",
       price: "14.77 ETH ($26,975)"
     },
   ]
@@ -106,13 +136,13 @@ function PartPicker(props) {
         </div>
         <div className="partpicker__shoe">
           {/*<img src={shoeBig}/>*/}
-          <img className={`${currentPart == 0 ? "" : "partpicker__hidden"}`} src={shoeOneSole}/>
-          <img className={`${currentPart == 1 ? "" : "partpicker__hidden"}`} src={shoeOneGuard}/>
-          <img className={`${currentPart == 2 ? "" : "partpicker__hidden"}`} src={shoeOneToeBox}/>
-          <img className={`${currentPart == 3 ? "" : "partpicker__hidden"}`} src={shoeOneMidPanel}/>
-          <img className={`${currentPart == 4 ? "" : "partpicker__hidden"}`} src={shoeOneBackPanel}/>
-          <img className={`${currentPart == 5 ? "" : "partpicker__hidden"}`} src={shoeOneHeelTab}/>
-          <img className={`${currentPart == 6 ? "" : "partpicker__hidden"}`} src={shoeOneSymbol}/>
+          <img className={`${currentPart == 0 ? "" : "partpicker__hidden"}`} src={partList[0].images[variationsSelcted[0]]}/>
+          <img className={`${currentPart == 1 ? "" : "partpicker__hidden"}`} src={partList[1].images[variationsSelcted[1]]}/>
+          <img className={`${currentPart == 2 ? "" : "partpicker__hidden"}`} src={partList[2].images[variationsSelcted[2]]}/>
+          <img className={`${currentPart == 3 ? "" : "partpicker__hidden"}`} src={partList[3].images[variationsSelcted[3]]}/>
+          <img className={`${currentPart == 4 ? "" : "partpicker__hidden"}`} src={partList[4].images[variationsSelcted[4]]}/>
+          <img className={`${currentPart == 5 ? "" : "partpicker__hidden"}`} src={partList[5].images[variationsSelcted[5]]}/>
+          <img className={`${currentPart == 6 ? "" : "partpicker__hidden"}`} src={partList[6].images[variationsSelcted[6]]}/>
         </div>
         <div className="construct">
           <div className="construct__price">
@@ -127,7 +157,7 @@ function PartPicker(props) {
         <img className="parts__arrow" src={arrowLeft} onClick={() => changePart('prev')}/>
         <div className="part">
           <div className="part__type">{partList[currentPart].type}</div>
-          <img src={partList[currentPart].image} />
+          <img src={partList[currentPart].icon} />
         </div>
         <img className="parts__arrow" src={arrowRight} onClick={() => changePart('next')}/>
       </div>

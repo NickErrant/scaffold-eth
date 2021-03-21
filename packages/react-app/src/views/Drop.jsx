@@ -11,6 +11,7 @@ function Drop({ tx, readContracts, writeContracts }) {
   const [currentPart, setCurrentPart] = useState(0)
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
   const [entered, setEntered] = useState(false)
+  const [won, setWon] = useState(false)
 
   return (
     <div className="drop">
@@ -32,14 +33,7 @@ function Drop({ tx, readContracts, writeContracts }) {
           <div className="drop__desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
-          <div className="drop__button" onClick={()=>{
-            if (entered) { return }
-            /* look how you call setPurpose on your contract: */
-            tx( writeContracts.StakeRaffle.stake(0), { to: readContracts.RemixableNFT.raffle });
-            setEntered(true)
-          }}>
-            { entered ? "Waiting Drop..." : "Enter Drop" }
-          </div>
+          { makeRaffleCTAButton() }
         </div>
         <div className="drop__right">
           <div className="drop__image">
@@ -50,6 +44,33 @@ function Drop({ tx, readContracts, writeContracts }) {
       </div>
     </div>
   );
+
+  function makeRaffleCTAButton() {
+    if (entered) {
+      // TODO: check the contract if current user won raffle
+      if (won) {
+        // RAFFLE WON
+        return (<div className="drop__button drop__button--win">
+          Raffle Won!
+        </div>)
+      } else {
+        // WAITING DRAW
+        return (<div className="drop__button drop__button--waiting">
+          Waiting Draw
+        </div>)
+      }
+    } else {
+      // ENTER DROP
+      return (<div className="drop__button" onClick={()=>{
+        if (entered) { return }
+        /* look how you call setPurpose on your contract: */
+        tx( writeContracts.StakeRaffle.stake(0), { to: readContracts.RemixableNFT.raffle });
+        setEntered(true)
+      }}>
+        "Enter Drop" 
+      </div>)
+    }
+  }
 }
 
 export default Drop;
