@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/drop.css";
 import arrowLeft from "../assets/icons/arrow-left.svg";
 import arrowRight from "../assets/icons/arrow-right.svg";
@@ -12,6 +12,13 @@ function Drop({ tx, readContracts, writeContracts }) {
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
   const [entered, setEntered] = useState(false)
   const [won, setWon] = useState(false)
+  useEffect(() => {
+    // TODO: check the contract if current user won raffle
+    const ticketId = 0
+    if (readContracts && readContracts.RemixableNFT) {
+      // readContracts.RemixableNFT.raffle.getTicketStatus(ticketId)
+    }
+  })
 
   return (
     <div className="drop">
@@ -47,7 +54,6 @@ function Drop({ tx, readContracts, writeContracts }) {
 
   function makeRaffleCTAButton() {
     if (entered) {
-      // TODO: check the contract if current user won raffle
       if (won) {
         // RAFFLE WON
         return (<div className="drop__button drop__button--win">
