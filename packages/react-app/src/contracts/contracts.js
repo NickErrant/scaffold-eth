@@ -1,1 +1,1 @@
-module.exports = ["YourCollectible"];
+module.exports = ["ExampleToken","Remix721","RemixableNFT","StakeRaffle"];

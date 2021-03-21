@@ -338,12 +338,12 @@ function App(props) {
           <Menu.Item key="/transfers">
             <Link onClick={()=>{setRoute("/transfers")}} to="/transfers">Transfers</Link>
           </Menu.Item>
-          <Menu.Item key="/ipfsup">
+          {/* <Menu.Item key="/ipfsup">
             <Link onClick={()=>{setRoute("/ipfsup")}} to="/ipfsup">IPFS Upload</Link>
           </Menu.Item>
           <Menu.Item key="/ipfsdown">
             <Link onClick={()=>{setRoute("/ipfsdown")}} to="/ipfsdown">IPFS Download</Link>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="/debugcontracts">
             <Link onClick={()=>{setRoute("/debugcontracts")}} to="/debugcontracts">Debug Contracts</Link>
           </Menu.Item>
@@ -543,7 +543,7 @@ import constructedShoe
           </Route>
           
           <Route path="/drop/1">
-            <Drop />  
+            <Drop tx={tx} readContracts={readContracts} writeContracts={writeContracts}/>  
           </Route>
 
           <Route path="/transfers">
@@ -635,7 +635,14 @@ import constructedShoe
           </Route>
           <Route path="/debugcontracts">
               <Contract
-                name="YourCollectible"
+                name="RemixableNFT"
+                signer={userProvider.getSigner()}
+                provider={localProvider}
+                address={address}
+                blockExplorer={blockExplorer}
+              />
+              <Contract
+                name="ExampleToken"
                 signer={userProvider.getSigner()}
                 provider={localProvider}
                 address={address}

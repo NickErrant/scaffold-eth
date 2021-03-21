@@ -15,7 +15,7 @@
 .drop__title {
   font-weight: 900;
   font-style: italic;
-  font-size: 34px;
+  font-size: 44px;
   padding: 1rem 0 0 2rem;
   text-align: left;
   text-transform: uppercase;
@@ -62,7 +62,7 @@
 .drop__button {
   align-items: center;
   background-color: #000000;
-  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.05);
   border-radius: 2rem;
   color: #FFFFFF;
   cursor: pointer;
@@ -75,6 +75,23 @@
   font-weight: 600;
   font-style: italic;
   font-size: 24px;
+
+  transition: box-shadow .3s;
+  float: left;
+}
+.drop__button:hover {
+  box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.35);
+}
+
+.drop__button--waiting {
+  background-color: white;
+  border: solid 2px #C496FF;
+  color: #C496FF;
+}
+
+.drop__button--win {
+  background-color: #C496FF;
+  color: white;
 }
 
 .drop__button--waiting {

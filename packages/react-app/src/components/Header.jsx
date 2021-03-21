@@ -1,14 +1,15 @@
 import React from "react";
 import { PageHeader } from "antd";
+import logo from '../assets/favicon.png'
 
 // displays a page header
 
 export default function Header() {
   return (
-    <a href="https://github.com/austintgriffith/scaffold-eth" target="_blank" rel="noopener noreferrer">
+    <a href="/" target="_blank" rel="noopener noreferrer">
       <PageHeader
-        title="🏗 scaffold-eth"
-        subTitle="🖼 NFT example"
+        avatar={{ src : logo, shape: "square", size: "large" }}
+        title="Composable Collectibles"
         style={{ cursor: "pointer" }}
       />
     </a>

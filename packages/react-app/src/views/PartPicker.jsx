@@ -11,7 +11,6 @@ import heelTab from "../assets/shoe-icons/heel-tab.svg";
 import symbol from "../assets/shoe-icons/symbol.svg";
 import arrowLeft from "../assets/icons/arrow-left.svg";
 import arrowRight from "../assets/icons/arrow-right.svg";
-import shoeBig from "../assets/shoe-big.png";
 
 import shoeOneSole from "../assets/shoe1/shoe1-sole.png";
 import shoeOneGuard from "../assets/shoe1/shoe1-guard.png";
