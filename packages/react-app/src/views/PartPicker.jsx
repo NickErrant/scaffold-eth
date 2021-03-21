@@ -103,8 +103,10 @@ function PartPicker(props) {
       price: "14.77 ETH ($26,975)"
     },
   ]
+  const variationPrices = [["In Collection", 150, 140, 100],[200, 300, 2500, 120],[145, 240, 205, 125],[400, 325, 500, 420],[145, 240, 205, 125],["In Collection", 240, 205, 125],["In Collection", 1524, 1999, 5425]]
   const [currentPart, setCurrentPart] = useState(0)
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
+  const [constructed, setConstructed] = useState(false)
 
   function changePart(direction) {
     let newIndex = currentPart;
@@ -128,9 +130,19 @@ function PartPicker(props) {
     setVariationsSelcted(newVariations);
   }
 
+  function getPrice() {
+    let totalPrice = 0;
+    for (let i = 0; i < 7; i++){
+      if (variationPrices[i][variationsSelcted[i]] != "In Collection") {
+        totalPrice = totalPrice + variationPrices[i][variationsSelcted[i]];
+      }
+    }
+    return totalPrice;
+  }
+
   return (
     <div className="partpicker">
-      <div className="partpicker__hero">
+      <div className={`partpicker__hero ${constructed ? "partpicker__hero--constructed" : ""}`}>
         <div className="partpicker__title">
           Every Thing's A Remix
         </div>
@@ -146,28 +158,40 @@ function PartPicker(props) {
         </div>
         <div className="construct">
           <div className="construct__price">
-            <span>Total price:</span> 24.39 ETH ($52,345)
+            <span>Total price:</span> {getPrice()} DAI
           </div>
-          <div className="construct__button">
-            CONSTRUCT
-          </div>
+          { !constructed 
+          ? <div className="construct__button" onClick={() => setConstructed(true)}>
+              CONSTRUCT
+            </div>
+          : <div className="construct__buttons">
+              <div className="construct__button construct__button--hollow">
+                REDEEM
+              </div>
+              <div className="construct__button" onClick={()=> props.mintShoeNft()}>
+                MINT NFT
+              </div>
+            </div>
+          }
         </div>
       </div>
-      <div className="parts">
-        <img className="parts__arrow" src={arrowLeft} onClick={() => changePart('prev')}/>
-        <div className="part">
-          <div className="part__type">{partList[currentPart].type}</div>
-          <img src={partList[currentPart].icon} />
-        </div>
-        <img className="parts__arrow" src={arrowRight} onClick={() => changePart('next')}/>
-      </div>
-      <div className="variations">
-        {variationList.map((variation, index) => 
-          <div className={`variation ${index == variationsSelcted[currentPart] ? "variation--selected" : ""}`} onClick={() => chooseVariation(index)}>
-            <div className="variation__name">{variation.name}</div>
-            <div className={`variation__price ${variation.price == "In Collection" ? "variation__price--collection" : ""}`}>{variation.price}</div>
+      <div className={`${constructed ? "picker--disabled" : ""}`}>
+        <div className="parts">
+          <img className="parts__arrow" src={arrowLeft} onClick={() => changePart('prev')}/>
+          <div className="part">
+            <div className="part__type">{partList[currentPart].type}</div>
+            <img src={partList[currentPart].icon} />
           </div>
-        )}
+          <img className="parts__arrow" src={arrowRight} onClick={() => changePart('next')}/>
+        </div>
+        <div className="variations">
+          {variationList.map((variation, index) => 
+            <div className={`variation ${index == variationsSelcted[currentPart] ? "variation--selected" : ""}`} onClick={() => chooseVariation(index)}>
+              <div className="variation__name">{variation.name}</div>
+              <div className={`variation__price ${variationPrices[currentPart][index] == "In Collection" ? "variation__price--collection" : ""}`}>{variationPrices[currentPart][index] + (variationPrices[currentPart][index] == "In Collection" ? "" : " DAI")}</div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
