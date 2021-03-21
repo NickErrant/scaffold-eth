@@ -1,1 +1,1 @@
-module.exports = ["StakeRaffle", "RemixableNFT", "Remix721"];
+module.exports = ["ExampleToken","RemixableNFT"];
