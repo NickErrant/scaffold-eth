@@ -226,6 +226,14 @@ function App(props) {
 
 
   let networkDisplay = ""
+  
+  // localhost chainId is 31337
+  // the selectedChainId when running on localhost is 1337 ???
+  // concidence? I think not...
+  if (selectedChainId == 1337) {
+    selectedChainId = 31337 // force set selected chain to localhost
+  }
+
   if(localChainId && selectedChainId && localChainId != selectedChainId ){
     networkDisplay = (
       <div style={{zIndex:2, position:'absolute', right:0,top:60,padding:16}}>
