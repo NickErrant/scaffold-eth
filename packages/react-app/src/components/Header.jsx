@@ -9,7 +9,7 @@ export default function Header() {
     <a href="/" target="_blank" rel="noopener noreferrer">
       <PageHeader
         avatar={{ src : logo, shape: "square", size: "large" }}
-        title="Composable Collectibles"
+        title=" "
         style={{ cursor: "pointer" }}
       />
     </a>
