@@ -1,6 +1,6 @@
 import React from "react";
 import { PageHeader } from "antd";
-import logo from '../assets/header_logo.png'
+import logo from '../assets/favicon.png'
 
 // displays a page header
 
