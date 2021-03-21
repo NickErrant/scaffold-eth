@@ -10,6 +10,7 @@ import dropBg from "../assets/drop-bg.svg";
 function Drop({ tx, readContracts, writeContracts }) {
   const [currentPart, setCurrentPart] = useState(0)
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
+  const [entered, setEntered] = useState(false)
 
   return (
     <div className="drop">
@@ -32,10 +33,12 @@ function Drop({ tx, readContracts, writeContracts }) {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
           <div className="drop__button" onClick={()=>{
+            if (entered) { return }
             /* look how you call setPurpose on your contract: */
-            tx( writeContracts.StakeRaffle.stake(0), {to: readContracts.RemixableNFT.raffle});
-          }} >
-            Enter Drop
+            tx( writeContracts.StakeRaffle.stake(0), { to: readContracts.RemixableNFT.raffle });
+            setEntered(true)
+          }}>
+            { entered ? "Waiting Drop..." : "Enter Drop" }
           </div>
         </div>
         <div className="drop__right">
