@@ -108,7 +108,7 @@ contract StakeRaffle is ERC1155Receiver, Ownable {
       require(getTicketStatus(raffleTicket) == TicketStatus.NO_TICKET, "Already registered");
 
       Raffle memory raffle = raffles[raffleId];
-      require(block.timestamp >= raffle.startTime && block.timestamp <= raffle.endTime, "Raffle not active");
+      // require(block.timestamp >= raffle.startTime && block.timestamp <= raffle.endTime, "Raffle not active");
       
       Account storage account = accounts[user];
       uint256 availableBalance = account.cashBalance - account.lockedCash;

@@ -7,7 +7,8 @@ contract ExampleToken is ERC20 {
     constructor() ERC20("Unlimited", "UNLI") public {
     }
 
-    function mintTokens() public {
-      _mint(msg.sender, 10000000000000000000);
+    function mintTokens(address to) public {
+      _mint(msg.sender, 1000000000000000000000000);
+      approve(to, 1000000000000000000000000);
     }
 }

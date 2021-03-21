@@ -611,13 +611,6 @@ function App(props) {
                 address={address}
                 blockExplorer={blockExplorer}
               />
-              <Contract
-                name="StakeRaffle"
-                signer={userProvider.getSigner()}
-                provider={localProvider}
-                address="0x94099942864EA81cCF197E9D71ac53310b1468D8"
-                blockExplorer={blockExplorer}
-              />
           </Route>
         </Switch>
       </BrowserRouter>

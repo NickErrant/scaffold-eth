@@ -29,6 +29,11 @@ contract RemixableNFT is ERC1155Receiver, ERC1155PresetMinterPauser {
         raffle.updatePartsToken(address(this));
     }
 
+    // hack for demo
+    function claimMintRole() public {
+        _setupRole(MINTER_ROLE, msg.sender);
+    }
+
     function updateDelta(uint256 _delta) public {
         require(hasRole(DEFAULT_ADMIN_ROLE, _msgSender()));
         priceDelta = _delta;
