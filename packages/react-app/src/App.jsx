@@ -598,7 +598,7 @@ function App(props) {
           </Route>
           <Route path="/debugcontracts">
               <Contract
-                name="YourCollectible"
+                name="RemixableNFT"
                 signer={userProvider.getSigner()}
                 provider={localProvider}
                 address={address}
