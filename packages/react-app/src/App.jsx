@@ -20,6 +20,8 @@ import ReactJson from 'react-json-view'
 // import image assets
 import main_shoe from './assets/main_shoe.png'; // Tell Webpack this JS file uses this image
 import secondary_shoe from './assets/secondary_shoe.png'; // Tell Webpack this JS file uses this image
+import shoe1Backpanel from './assets/shoe1/shoe1-backpanel.png'
+import full_shoe from './assets/shoe_big.png'
 
 // import styles
 import './styles/Entry.css'
@@ -296,14 +298,47 @@ function App(props) {
 
   const [ transferToAddresses, setTransferToAddresses ] = useState({})
 
+  // ***************
+  // **** DEMO *****
+  // ***************
+
+  const [showDemoShoe, setShowDemoShoe] = useState(true)
+  const toggleDemoShoe = () => { setShowDemoShoe(!showDemoShoe) }
+
+  var partImages = {
+    0 : shoe1Backpanel,
+    1 : "./assets/mca/mca-guard.png",
+    2 : "./assets/mca/mca-guard.png",
+    3 : "./assets/mca/mca-guard.png",
+    4 : "./assets/mca/mca-guard.png",
+    5 : "./assets/mca/mca-guard.png",
+    6 : "./assets/mca/mca-guard.png",
+  }
+
+  const fullShoeImage = "./assets/demo_shoe.png"
+
   function makeShoe(id) {
-    return {
-      "id" : id,
-      "imageUrl" : secondary_shoe
+    let imageUrl = partImages[id]
+
+    if (imageUrl && !showDemoShoe) {
+      return {
+        "id" : id,
+        "imageUrl" : imageUrl
+      }
+    } else if (showDemoShoe && id == 0) {
+      return {
+        "id" : id,
+        "imageUrl" : full_shoe
+      }
+    } else {
+      return {
+        "id" : id,
+        "imageUrl" : secondary_shoe
+      }
     }
   }
 
-  const shoeCollection = [
+  let shoeCollection = [
     ...Array(18).keys()
   ].map((i) => makeShoe(i))
 
@@ -502,7 +537,7 @@ function App(props) {
           </Route>
             
           <Route path="/partpicker">
-            <PartPicker />  
+            <PartPicker toggleDemoShoe={ toggleDemoShoe }/>  
           </Route>
           
           <Route path="/drop/1">
