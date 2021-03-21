@@ -403,7 +403,7 @@ function App(props) {
                           fontSize: 38, 
                           width: 235 
                         }}>
-                        Drop #1 ”Kanye West”
+                        Drop #1 ”Dropout”
                       </span>
                       <span 
                         style={{ 

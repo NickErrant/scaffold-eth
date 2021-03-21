@@ -87,7 +87,7 @@ function PartPicker(props) {
   ]
   const variationList = [
     { 
-      name: "Kanye West",
+      name: "Dropout",
       price: "14.77 ETH ($26,975)"
     },
     { 

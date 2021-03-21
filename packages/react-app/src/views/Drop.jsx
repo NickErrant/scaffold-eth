@@ -22,7 +22,7 @@ function Drop(props) {
             Drop #1
           </div>
           <div className="drop__name">
-            "Kanye West"
+            "Dropout"
           </div>
           <div className="drop__price">
             150 DAI ($145)
