@@ -47,6 +47,7 @@ contract Remix721 is ERC1155Receiver, ERC721Burnable, Ownable {
   }
 
   function onERC1155BatchReceived(address operator, address from, uint256[] memory ids, uint256[] memory values, bytes memory data) public virtual override returns (bytes4) {
+    require(msg.sender == address(parts))
     deposits[mintItem(from, "")] = Deposit(ids, values);
     return this.onERC1155BatchReceived.selector;
   }
