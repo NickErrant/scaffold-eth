@@ -5,17 +5,18 @@ pragma solidity >=0.7.6;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155Receiver.sol";
+import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
 // WARNING THIS IS NOT GOOD CODE
 
-contract StakeRaffle is Ownable {
+contract StakeRaffle is ERC1155Receiver, Ownable {
     using SafeERC20 for IERC20;
 
   struct Raffle {
       uint256 startTime;
       uint256 endTime;
       uint256 entryFee;
-      uint256 prizeId;
       uint256 lBonus;
       uint256 ticketIndex;
       uint256 numOfWinners;
@@ -44,11 +45,17 @@ contract StakeRaffle is Ownable {
   mapping (uint256 => Ticket) public tickets;
   mapping (address => bool) public whitelist;
   mapping (uint256 => uint256[]) public winners;
+  mapping (uint256 => uint256[]) public prizes;
   IERC20 public paymentToken;
+  IERC1155 public parts;
   uint256 public raffleCounter;
 
   function updatePaymentToken(address cash) public onlyOwner {
       paymentToken = IERC20(cash);
+  }
+
+  function updatePartsToken(address _parts) public onlyOwner {
+      parts = IERC1155(_parts);
   }
 
   function getTicketId(address account, uint256 raffleId) public view returns (uint256) {
@@ -73,9 +80,9 @@ contract StakeRaffle is Ownable {
       uint256 startTime,
       uint256 endTime,
       uint256 entryFee,
-      uint256 prizeId,
       uint256 lBonus,
-      uint256 numOfWinners
+      uint256 numOfWinners,
+      uint256[] memory _prizes
     )
     public
     onlyOwner
@@ -85,11 +92,11 @@ contract StakeRaffle is Ownable {
           startTime: startTime,
           endTime: endTime,
           entryFee: entryFee,
-          prizeId: prizeId,
           lBonus: lBonus,
           numOfWinners: numOfWinners,
           ticketIndex: 0
       });
+      prizes[raffleCounter] = _prizes;
   }
 
   function stake(uint256 raffleId)
@@ -152,7 +159,10 @@ contract StakeRaffle is Ownable {
       if (didWin) {
         account.cashBalance -= raffle.entryFee;
         account.lBonus = 0;
-        // shoe mint happens here maybe
+        uint256[] memory values = new uint256[](raffle.numOfWinners);
+        for (uint256 i = 0; i < raffle.numOfWinners; i++)
+            values[i] = 1;
+        parts.safeBatchTransferFrom(address(this), user, prizes[raffleId], values, "");
       } else {
         account.lBonus += raffle.lBonus;
       }
@@ -169,5 +179,13 @@ contract StakeRaffle is Ownable {
         require(block.timestamp > raffle.endTime && raffle.endTime != 0 && winners[raffleId].length == 0, "Raffle not over");
         require(raffle.numOfWinners == winNos.length, "Wrong number of winners");
         winners[raffleId] = winNos;
+    }
+
+    function onERC1155BatchReceived(address operator, address from, uint256[] memory ids, uint256[] memory values, bytes memory data) public virtual override returns (bytes4) {
+        return this.onERC1155BatchReceived.selector;
+    }
+
+    function onERC1155Received(address, address, uint256, uint256, bytes memory) public virtual override returns (bytes4) {
+        return "";
     }
 }
