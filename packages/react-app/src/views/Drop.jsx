@@ -40,6 +40,12 @@ function Drop({ tx, readContracts, writeContracts }) {
           }}>
             { entered ? "Waiting Drop..." : "Enter Drop" }
           </div>
+          <div className="drop__button drop__button--waiting">
+            Waiting Draw
+          </div>
+          <div className="drop__button drop__button--win">
+            Raffle Won!
+          </div>
         </div>
         <div className="drop__right">
           <div className="drop__image">
