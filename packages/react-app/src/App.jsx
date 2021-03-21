@@ -506,7 +506,7 @@ function App(props) {
           </Route>
           
           <Route path="/drop/1">
-            <Drop />  
+            <Drop tx={tx} readContracts={readContracts} writeContracts={writeContracts}/>  
           </Route>
 
           <Route path="/transfers">
@@ -602,6 +602,20 @@ function App(props) {
                 signer={userProvider.getSigner()}
                 provider={localProvider}
                 address={address}
+                blockExplorer={blockExplorer}
+              />
+              <Contract
+                name="ExampleToken"
+                signer={userProvider.getSigner()}
+                provider={localProvider}
+                address={address}
+                blockExplorer={blockExplorer}
+              />
+              <Contract
+                name="StakeRaffle"
+                signer={userProvider.getSigner()}
+                provider={localProvider}
+                address="0x94099942864EA81cCF197E9D71ac53310b1468D8"
                 blockExplorer={blockExplorer}
               />
           </Route>

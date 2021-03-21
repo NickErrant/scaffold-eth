@@ -103,7 +103,7 @@ contract StakeRaffle is ERC1155Receiver, Ownable {
     public
   {
       address user = msg.sender;
-      require(whitelist[user], "Not whitelisted");
+      // require(whitelist[user], "Not whitelisted");
       uint256 raffleTicket = getTicketId(user, raffleId);
       require(getTicketStatus(raffleTicket) == TicketStatus.NO_TICKET, "Already registered");
 

@@ -7,7 +7,7 @@ import arrowRight from "../assets/icons/arrow-right.svg";
 import shoeBig from "../assets/shoe-big.png";
 import dropBg from "../assets/drop-bg.svg";
 
-function Drop(props) {
+function Drop({ tx, readContracts, writeContracts }) {
   const [currentPart, setCurrentPart] = useState(0)
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
 
@@ -31,7 +31,10 @@ function Drop(props) {
           <div className="drop__desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
-          <div className="drop__button">
+          <div className="drop__button" onClick={()=>{
+            /* look how you call setPurpose on your contract: */
+            tx( writeContracts.StakeRaffle.stake(0), {to: readContracts.RemixableNFT.raffle});
+          }} >
             Enter Drop
           </div>
         </div>
