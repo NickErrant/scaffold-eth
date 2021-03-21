@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/drop.css";
 import arrowLeft from "../assets/icons/arrow-left.svg";
 import arrowRight from "../assets/icons/arrow-right.svg";
-import shoeBig from "../assets/shoe-big.png";
-import dropBg from "../assets/drop-bg.svg";
+import shoeBig from "../assets/shoe_big.png";
+import dropBg from "../assets/drop_bg.svg";
 
 function Drop({ tx, readContracts, writeContracts }) {
   const [currentPart, setCurrentPart] = useState(0)
