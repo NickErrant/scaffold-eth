@@ -147,7 +147,7 @@ function PartPicker(props) {
           <div className="construct__price">
             <span>Total price:</span> 24.39 ETH ($52,345)
           </div>
-          <div className="construct__button">
+          <div className="construct__button" onClick = { props.toggleDemoShoe }>
             CONSTRUCT
           </div>
         </div>

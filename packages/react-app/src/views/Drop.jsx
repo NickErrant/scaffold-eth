@@ -7,7 +7,7 @@ import arrowRight from "../assets/icons/arrow-right.svg";
 import shoeBig from "../assets/shoe_big.png";
 import dropBg from "../assets/drop_bg.svg";
 
-function Drop({ tx, readContracts, writeContracts }) {
+function Drop({ tx, readContracts, writeContracts, toggleDemoShoe }) {
   const [currentPart, setCurrentPart] = useState(0)
   const [variationsSelcted, setVariationsSelcted] = useState([0,0,0,0,0,0,0])
   const [entered, setEntered] = useState(false)
